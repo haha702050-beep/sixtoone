@@ -5,6 +5,11 @@ export default async function handler(request){
   if(!['GET','POST'].includes(request.method)) return json({error:'Method not allowed'},405);
   const base=(process.env.SUPABASE_URL||'').replace(/\/$/,'');
   const key=process.env.SUPABASE_PUBLISHABLE_KEY||'';
+  const urlValid =
+    /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(base);
+  const keyValid =
+    key.startsWith('sb_publishable_') ||
+    key.startsWith('eyJ');
   if (!urlValid || !keyValid) {
   return json({
     error: '环境变量校验失败',
