@@ -22,7 +22,23 @@ export default async function handler(request){
   }
   let res;
   try{res=await fetch(base+path,{method,headers,body,signal:AbortSignal.timeout(12000)})}
-  catch(e){return json({error:'Netlify 服务端访问 Supabase 失败：'+(e?.name==='TimeoutError'?'请求超时':e.message)},502)}
+  catch (e) {
+  console.error('Supabase fetch error:', {
+    message: e.message,
+    name: e.name,
+    cause: {
+      code: e.cause?.code,
+      errno: e.cause?.errno,
+      syscall: e.cause?.syscall,
+      message: e.cause?.message
+    }
+  });
+
+  return json({
+    error: 'Netlify 服务端访问 Supabase 失败',
+    code: e.cause?.code || e.name || 'UNKNOWN'
+  }, 502);
+}
   let data;try{data=await res.json()}catch{return json({error:'Supabase 返回了无法解析的响应（HTTP '+res.status+'）'},502)}
   if(!res.ok)return json({error:data.message||data.error||data.hint||('Supabase HTTP '+res.status)},res.status===401||res.status===403?502:400);
   return method==='GET'?json({records:data}):json({record:Array.isArray(data)?data[0]:data});
