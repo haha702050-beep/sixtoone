@@ -5,7 +5,15 @@ export default async function handler(request){
   if(!['GET','POST'].includes(request.method)) return json({error:'Method not allowed'},405);
   const base=(process.env.SUPABASE_URL||'').replace(/\/$/,'');
   const key=process.env.SUPABASE_PUBLISHABLE_KEY||'';
-  if(!/^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(base)||!key.startsWith('sb_publishable_')&&!key.startsWith('eyJ')) return json({error:'Netlify 环境变量未正确设置：SUPABASE_URL / SUPABASE_PUBLISHABLE_KEY'},503);
+  if (!urlValid || !keyValid) {
+  return json({
+    error: '环境变量校验失败',
+    urlPresent: Boolean(base),
+    urlValid,
+    keyPresent: Boolean(key),
+    keyValid
+  }, 503);
+}
   const headers={'apikey':key,'Content-Type':'application/json'};
   let path,method=request.method,body;
   if(method==='GET'){
