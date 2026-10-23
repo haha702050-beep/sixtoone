@@ -1,50 +1,92 @@
-<!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#fff8f0"><title>今天吃什么 · 六选一</title>
-<style>
-:root{--ink:#282637;--muted:#797689;--bg:#fff8f0;--purple:#7254d8;--line:#e9e4eb}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:radial-gradient(ellipse at top left,#fff1dd 0,transparent 55%),radial-gradient(ellipse at top right,#f1e8ff 0,transparent 55%),var(--bg);min-height:100vh}main{max-width:760px;margin:0 auto;padding:28px 17px 70px}.tag{font-size:11px;font-weight:800;letter-spacing:4px;color:#9779bd;text-align:center}h1{text-align:center;font-size:clamp(30px,7vw,43px);margin:10px 0 8px;letter-spacing:-1px}p.sub{text-align:center;margin:0 0 25px;color:var(--muted);font-size:14px}.panel{background:rgba(255,255,255,.89);box-shadow:0 12px 35px #6a467414;border:1px solid #fff;border-radius:25px;padding:22px;margin-bottom:16px}.name-line{display:flex;gap:10px;align-items:center;margin-bottom:18px}.name-line label{white-space:nowrap;font-weight:700}.name-line input{width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:16px;outline-color:var(--purple);min-width:0}.foods{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.food{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:102px;border-radius:16px;border:2px solid transparent;transition:transform .13s,border .13s;gap:7px}.food .emoji{font-size:29px}.food .label{font-size:14px;font-weight:800}.food.active{border-color:#8c6ee8;transform:scale(1.045);box-shadow:0 5px 16px #745bba30}.food:nth-child(1){background:#fff0e7}.food:nth-child(2){background:#e7f9ee}.food:nth-child(3){background:#ffeaf0}.food:nth-child(4){background:#fff6de}.food:nth-child(5){background:#ecf6ff}.food:nth-child(6){background:#f1eafa}.draw{margin-top:17px;display:block;width:100%;border:0;border-radius:16px;padding:17px;background:linear-gradient(100deg,#8b6bf1,#6a4dcf);color:#fff;font-size:18px;font-weight:900;box-shadow:0 7px 17px #6e54cc43;cursor:pointer}.draw:disabled{opacity:.6;cursor:wait}.result{margin:16px auto 0;text-align:center;font-weight:800;min-height:26px;color:#7653cf;font-size:19px}.status{text-align:center;font-size:13px;min-height:21px;color:var(--muted);margin-top:9px}.status.error{color:#c53654}.section-head{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:15px}.section-head h2{font-size:18px;margin:0}.section-head button{background:#f4f0fb;border:0;border-radius:9px;padding:9px 11px;color:#684fc7;font-weight:700;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:15px}.metric{background:#f7f3fc;padding:13px 6px;border-radius:13px;text-align:center}.metric strong{display:block;font-size:23px}.metric span{font-size:11px;color:var(--muted)}.chart-item{display:grid;grid-template-columns:85px 1fr 36px;align-items:center;gap:8px;font-size:13px;margin:10px 0}.bar{height:10px;border-radius:8px;background:#f1edf6;overflow:hidden}.bar i{display:block;background:linear-gradient(90deg,#c3b2fa,#7658dc);height:100%;border-radius:8px;min-width:0}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:11px 5px;border-bottom:1px solid #f2edf2}th{color:var(--muted);font-weight:600}td:last-child,th:last-child{text-align:right} .empty{text-align:center;color:var(--muted);padding:22px 0;font-size:13px}.note{text-align:center;color:#98919f;font-size:12px;line-height:1.7;margin-top:14px}.scroll{overflow:auto} @media(max-width:380px){.panel{padding:16px}.food{min-height:89px}.food .label{font-size:12px}.chart-item{grid-template-columns:78px 1fr 30px}}
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>今天吃什么 · 多人共享版</title><style>
+:root{--ink:#282637;--muted:#797689;--purple:#7254d8;--line:#e9e4eb}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;color:var(--ink);background:radial-gradient(ellipse at top left,#fff1dd 0,transparent 55%),radial-gradient(ellipse at top right,#f1e8ff 0,transparent 55%),#fff8f0;min-height:100vh}main{max-width:760px;margin:auto;padding:27px 17px 55px}.tag{text-align:center;letter-spacing:3px;color:#9270b8;font-size:11px;font-weight:800}h1{text-align:center;font-size:clamp(30px,6vw,43px);margin:11px 0 8px}.sub{text-align:center;color:var(--muted);font-size:14px;margin:0 0 18px}.demo{text-align:center;margin:0 auto 18px;background:#f0eafd;color:#7653cf;font-size:12px;padding:8px 14px;border-radius:20px;max-width:max-content}.panel{background:#ffffffed;box-shadow:0 12px 35px #6a467414;border:1px solid white;border-radius:25px;padding:22px;margin-bottom:16px}.name-line{display:flex;align-items:center;gap:10px;margin-bottom:18px}.name-line label{white-space:nowrap;font-weight:700}.name-line input{min-width:0;width:100%;border:1px solid var(--line);border-radius:12px;padding:13px;font-size:16px;outline-color:var(--purple)}.foods{display:grid;grid-template-columns:repeat(3,1fr);gap:11px}.food{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:102px;border-radius:16px;border:2px solid transparent;gap:7px;transition:.1s}.food .emoji{font-size:29px}.food .label{font-size:14px;font-weight:800}.food.active{border-color:#8c6ee8;transform:scale(1.035)}.food:nth-child(1){background:#fff0e7}.food:nth-child(2){background:#e7f9ee}.food:nth-child(3){background:#ffeaf0}.food:nth-child(4){background:#fff6de}.food:nth-child(5){background:#ecf6ff}.food:nth-child(6){background:#f1eafa}.draw{display:block;width:100%;margin-top:18px;border:0;border-radius:16px;padding:17px;background:linear-gradient(100deg,#8b6bf1,#6a4dcf);color:white;font-size:18px;font-weight:850;cursor:pointer}.draw:disabled{opacity:.65}.result{text-align:center;min-height:26px;margin-top:18px;font-size:18px;color:#7653cf;font-weight:800}.section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;gap:10px}.section-head h2{font-size:18px;margin:0}.section-head button{border:0;background:#f4f0fb;color:#684fc7;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:750}.metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:15px}.metric{background:#f7f3fc;padding:13px 6px;border-radius:13px;text-align:center}.metric strong{display:block;font-size:24px}.metric span{font-size:11px;color:var(--muted)}.chart-item{display:grid;grid-template-columns:85px 1fr 35px;align-items:center;gap:8px;font-size:13px;margin:10px 0}.bar{height:10px;border-radius:10px;background:#f1edf6;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#c3b2fa,#7658dc);border-radius:8px}table{border-collapse:collapse;width:100%;font-size:13px}td,th{text-align:left;padding:11px 5px;border-bottom:1px solid #f2edf2}th{color:var(--muted);font-weight:650}td:last-child,th:last-child{text-align:right}.daily-table th,.daily-table td{text-align:center;white-space:nowrap}.daily-table th:first-child,.daily-table td:first-child{text-align:left}.daily-table tbody tr:first-child{background:#faf7ff}.daily-table td:last-child{font-weight:850;color:#7254d8}.info{font-size:12px;line-height:1.7;color:var(--muted);margin:0 0 14px}.scroll{overflow:auto}.note{text-align:center;color:#9b93a5;font-size:12px;line-height:1.8}.empty{text-align:center;color:#999;padding:20px}.filter-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}.filter-field{display:flex;flex-direction:column;gap:6px;font-weight:750;font-size:13px}.filter-field input,.filter-field select{width:100%;height:43px;border:1px solid #e6def0;border-radius:11px;padding:0 12px;background:#fbf9ff;color:#282637;font:inherit;outline-color:#7254d8}.filter-result{background:#f7f2ff;border-radius:13px;padding:14px;margin:12px 0;font-size:14px}.filter-result strong{color:#7052d2;font-size:24px}.filter-foods{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}.filter-foods div{background:#fff;border-radius:10px;padding:10px 5px;text-align:center;font-size:12px}.filter-foods b{display:block;color:#7052d2;font-size:17px;margin-top:4px}.scroll table{min-width:460px}.pill{color:#8166cf;font-size:11px;background:#f6f1ff;border-radius:20px;padding:5px 8px}@media(max-width:380px){.panel{padding:16px}.food{min-height:90px}.food .label{font-size:12px}}
 </style></head><body><main><div class="tag">LUCKY PICKER · SHARED</div><h1>🍽️ 今天吃什么？</h1><p class="sub">六选一 · 大家的选择，共同记录</p>
-<section class="panel"><div class="name-line"><label for="nickname">🙋 我是</label><input id="nickname" maxlength="20" autocomplete="nickname" placeholder="输入你的昵称（所有人都能看到）"></div><div class="foods" id="foods"></div><button class="draw" id="drawBtn">🎲 开始随机抽取</button><div class="result" id="result" aria-live="polite"></div><div class="status" id="status" aria-live="polite"></div></section>
-<section class="panel"><div class="section-head"><h2>📊 全员统计</h2><button id="refreshBtn">↻ 刷新</button></div><div class="metrics"><div class="metric"><strong id="total">—</strong><span>累计抽取</span></div><div class="metric"><strong id="people">—</strong><span>参与昵称数</span></div><div class="metric"><strong id="mine">—</strong><span>我的抽取</span></div></div><div id="chart"></div></section>
+<section class="panel"><div class="name-line"><label>🙋 我是</label><input id="nickname" maxlength="20" placeholder="输入昵称"></div><div class="foods" id="foods"></div><button class="draw" id="drawBtn">🎲 开始随机抽取</button><div class="result" id="result"></div><div class="note" id="syncStatus" aria-live="polite"></div></section>
+<section class="panel"><div class="section-head"><h2>📊 全员统计</h2><button id="reset">↻ 刷新数据</button></div><div class="metrics"><div class="metric"><strong id="total">—</strong><span>累计抽取</span></div><div class="metric"><strong id="people">—</strong><span>参与昵称数</span></div><div class="metric"><strong id="mine">—</strong><span>我的抽取</span></div></div><div id="chart"></div></section>
+<section class="panel"><div class="section-head"><h2>📅 每日用餐统计</h2><span class="pill">筛选查询</span></div>
+<p class="info">选择日期和用餐时段，查看该范围内的抽取次数与选项分布。按北京时间统计。</p>
+<div class="filter-controls"><label class="filter-field">选择日期<input id="filterDate" type="date"></label>
+<label class="filter-field">选择时间段<select id="filterSlot"><option value="all">全部时间段</option><option value="lunch">☀️ 午饭（09:00–14:59）</option><option value="dinner">🌙 晚饭（16:00–19:59）</option><option value="other">🕒 其他时间</option></select></label></div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><span class="info" id="filterHint" style="margin:0">请选择查看范围</span><button id="allDates" style="border:0;border-radius:8px;background:#eee8fb;color:#6a4dcf;padding:8px 12px;cursor:pointer">查看全部日期</button></div>
+<div class="filter-result"><div id="filterTitle">今日 · 全部时段</div><div style="margin-top:6px"><strong id="filterTotal">0</strong> 次抽取</div><div class="filter-foods" id="filterFoods"></div></div>
+<div class="scroll"><table class="daily-table"><thead><tr><th>日期范围</th><th>☀️ 午饭</th><th>🌙 晚饭</th><th>🕒 其他</th><th>合计</th></tr></thead><tbody id="dailyStats"></tbody></table></div>
+<div class="section-head" style="margin-top:22px"><h2>📋 当前筛选的抽取明细</h2><span id="detailCount" class="pill">共 0 条</span></div>
+<div class="scroll"><table><thead><tr><th>日期</th><th>时间</th><th>抽取人</th><th>抽中食物</th><th>时段</th></tr></thead><tbody id="dailyDetails"></tbody></table></div>
+</section>
 <section class="panel"><div class="section-head"><h2>🏆 抽取排行榜</h2></div><div class="scroll"><table><thead><tr><th>排名</th><th>昵称</th><th>抽取次数</th></tr></thead><tbody id="rank"></tbody></table></div></section>
-<section class="panel"><div class="section-head"><h2>🕘 最近 50 条记录</h2></div><div class="scroll"><table><thead><tr><th>抽取人</th><th>抽中</th><th>时间</th></tr></thead><tbody id="history"></tbody></table></div></section><p class="note">共享记录会保存在 Supabase；页面约每 20 秒自动同步。<br>昵称不是实名身份，同名统计会合并，请不要填写个人敏感信息。</p></main>
+<section class="panel"><div class="section-head"><h2>🕘 最近抽取记录</h2></div><div class="scroll"><table><thead><tr><th>抽取人</th><th>抽中</th><th>时间</th></tr></thead><tbody id="history"></tbody></table></div></section><p class="note">多人共享记录，约每 20 秒自动同步。按北京时间统计。<br>同名用户合并统计，请勿填写敏感信息。</p></main>
 <script>
-(function(){'use strict';
-const foods=[['炮兵','🍜'],['米村','🍚'],['香锅','🌶️'],['🐔','🐔'],['饺子','🥟'],['牛筋煲','🍲']];const byId=id=>document.getElementById(id);
-// 所有数据请求改走本站 Netlify Function，不再让浏览器直连 Supabase。
-const client={
- from:()=>({select:()=>({order:()=>({range:async(start,end)=>{
-  try{const r=await fetch('/.netlify/functions/draws?offset='+start+'&limit='+(end-start+1),{cache:'no-store'});const j=await r.json();return r.ok?{data:j.records,error:null}:{data:null,error:new Error(j.error||'查询失败（HTTP '+r.status+'）')};}
-  catch(e){return {data:null,error:e}}
- }})})}),
- rpc:async(_name,args)=>{
-  try{const r=await fetch('/.netlify/functions/draws',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nickname:args.p_nickname,clientId:args.p_client_id})});const j=await r.json();return r.ok?{data:j.record,error:null}:{data:null,error:new Error(j.error||'抽取失败（HTTP '+r.status+'）')};}
-  catch(e){return {data:null,error:e}}
- }
-};
-let deviceId=localStorage.getItem('picker_device_id');if(!deviceId){deviceId=crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{let r=Math.random()*16|0;return(c==='x'?r:(r&3|8)).toString(16)});localStorage.setItem('picker_device_id',deviceId)}
+(()=>{'use strict';const foods=[['炮兵','🍜'],['米村','🍚'],['香锅','🌶️'],['🐔','🐔'],['饺子','🥟'],['牛筋煲','🍲']],byId=x=>document.getElementById(x);let records=[];const formatter=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});const parts=d=>Object.fromEntries(formatter.formatToParts(new Date(d)).filter(x=>x.type!=='literal').map(x=>[x.type,x.value]));function row(t,arr){let tr=document.createElement('tr');for(let x of arr){let td=document.createElement('td');td.textContent=String(x);tr.appendChild(td)}t.appendChild(tr)}function time(d){return new Date(d).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false})}
+function render(){let count={},rank={};for(let [name] of foods)count[name]=0;for(let r of records){count[r.food]=(count[r.food]||0)+1;rank[r.nickname]=(rank[r.nickname]||0)+1}byId('total').textContent=records.length;byId('people').textContent=Object.keys(rank).length;byId('mine').textContent=rank[byId('nickname').value.trim()]||0;let biggest=Math.max(1,...Object.values(count));byId('chart').replaceChildren();for(let [name,emoji] of foods){let item=document.createElement('div');item.className='chart-item';item.innerHTML='<span></span><div class="bar"><i></i></div><b></b>';item.querySelector('span').textContent=emoji+' '+name;item.querySelector('i').style.width=count[name]/biggest*100+'%';item.querySelector('b').textContent=count[name];byId('chart').appendChild(item)}let days=new Map();for(let r of records){let p=parts(r.created_at),date=`${p.year}-${p.month}-${p.day}`,mins=Number(p.hour)*60+Number(p.minute);if(!days.has(date))days.set(date,[0,0,0]);days.get(date)[mins>=540&&mins<900?0:mins>=960&&mins<1200?1:2]++}const selectedDate=byId('filterDate').value,slot=byId('filterSlot').value;
+const slotLabel={all:'全部时间段',lunch:'午饭',dinner:'晚饭',other:'其他'}[slot];
+const filtered=records.filter(r=>{let p=parts(r.created_at),day=`${p.year}-${p.month}-${p.day}`,mins=Number(p.hour)*60+Number(p.minute),group=mins>=540&&mins<900?'lunch':mins>=960&&mins<1200?'dinner':'other';return (!selectedDate||selectedDate===day)&&(slot==='all'||slot===group)});
+byId('filterTitle').textContent=(selectedDate||'全部日期')+' · '+slotLabel;
+byId('filterHint').textContent=selectedDate?'已选择 '+selectedDate:'目前查看全部日期';
+byId('filterTotal').textContent=filtered.length;
+const detailBody=byId('dailyDetails');detailBody.replaceChildren();byId('detailCount').textContent='共 '+filtered.length+' 条';
+for(const rec of filtered){const pt=parts(rec.created_at),minutes=Number(pt.hour)*60+Number(pt.minute),period=minutes>=540&&minutes<900?'☀️ 午饭':minutes>=960&&minutes<1200?'🌙 晚饭':'🕒 其他';row(detailBody,[`${pt.year}-${pt.month}-${pt.day}`,`${pt.hour}:${pt.minute}`,rec.nickname,(foods.find(f=>f[0]===rec.food)?.[1]||'')+' '+rec.food,period]);}
+if(!filtered.length){const tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.className='empty';td.textContent='当前日期和时段暂无抽取明细';tr.appendChild(td);detailBody.appendChild(tr)}
+
+let foodCount={};for(const r of filtered)foodCount[r.food]=(foodCount[r.food]||0)+1;
+byId('filterFoods').replaceChildren();for(const [n,em] of foods){const div=document.createElement('div');div.textContent=em+' '+n;const b=document.createElement('b');b.textContent=foodCount[n]||0;div.appendChild(b);byId('filterFoods').appendChild(div)}
+byId('dailyStats').replaceChildren();
+let chosenDays=[...days].filter(([d])=>!selectedDate||selectedDate===d).sort((a,b)=>b[0].localeCompare(a[0]));
+for(let [date,c] of chosenDays){let chosen=c.map((x,i)=>slot==='all'||['lunch','dinner','other'][i]===slot?x:0);row(byId('dailyStats'),[date,...chosen,chosen.reduce((a,b)=>a+b,0)])}
+if(!chosenDays.length){let tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=5;td.className='empty';td.textContent='该日期暂无记录';tr.appendChild(td);byId('dailyStats').appendChild(tr)}
+byId('rank').replaceChildren();Object.entries(rank).sort((a,b)=>b[1]-a[1]).forEach(([n,k],i)=>row(byId('rank'),[i+1,n,k]));byId('history').replaceChildren();records.slice(0,30).forEach(r=>row(byId('history'),[r.nickname,r.food,time(r.created_at)]))}
+foods.forEach(([name,emoji],i)=>{let d=document.createElement('div');d.className='food';d.innerHTML='<span class="emoji"></span><span class="label"></span>';d.children[0].textContent=emoji;d.children[1].textContent=name;d.id='food'+i;byId('foods').appendChild(d)});const highlight=i=>foods.forEach((_,j)=>byId('food'+j).classList.toggle('active',i===j));let busy=false,lastDraw=0;
+let deviceId=localStorage.getItem('picker_device_id');
+if(!deviceId){deviceId=crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g,c=>{let r=Math.random()*16|0;return (c==='x'?r:(r&3|8)).toString(16)});localStorage.setItem('picker_device_id',deviceId)}
 byId('nickname').value=localStorage.getItem('picker_nickname')||'';
-let busy=false;let lastDraw=0;const counts=Object.fromEntries(foods.map(x=>[x[0],0]));
-foods.forEach(([label,emoji],i)=>{let div=document.createElement('div');div.className='food';div.innerHTML='<span class="emoji"></span><span class="label"></span>';div.querySelector('.emoji').textContent=emoji;div.querySelector('.label').textContent=label;div.id='food'+i;byId('foods').appendChild(div)});
-function highlight(index){foods.forEach((_,i)=>byId('food'+i).classList.toggle('active',i===index))}
-function status(msg,isError=false){let el=byId('status');el.textContent=msg;el.classList.toggle('error',isError)}
-function cell(tr,value){let td=document.createElement('td');td.textContent=String(value);tr.appendChild(td)}
-function row(tbody,values){let tr=document.createElement('tr');values.forEach(v=>cell(tr,v));tbody.appendChild(tr)}
-function msgRow(tbody,message){tbody.replaceChildren();let tr=document.createElement('tr'),td=document.createElement('td');td.colSpan=3;td.className='empty';td.textContent=message;tr.appendChild(td);tbody.appendChild(tr)}
-function timeFormat(iso){return new Date(iso).toLocaleString('zh-CN',{month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false})}
+const nowPt=parts(new Date());byId('filterDate').value=`${nowPt.year}-${nowPt.month}-${nowPt.day}`;
+byId('filterDate').addEventListener('change',render);
+byId('filterSlot').addEventListener('change',render);
+byId('allDates').addEventListener('click',()=>{byId('filterDate').value='';render()});
+byId('nickname').addEventListener('input',e=>{localStorage.setItem('picker_nickname',e.target.value);render()});
+function setStatus(message,error=false){byId('syncStatus').textContent=message;byId('syncStatus').style.color=error?'#c53654':'#797689'}
+async function requestData(url,options){
+ const response=await fetch(url,options);
+ const raw=await response.text();let data;
+ try{data=JSON.parse(raw)}catch{throw new Error('服务器响应异常（HTTP '+response.status+'）')}
+ if(!response.ok)throw new Error(data.error||('请求失败（HTTP '+response.status+'）'));
+ return data;
+}
 async function refresh(){
  try{
- // 分页读取全量记录以保证统计准确（适合小群；数据量很大时应改用数据库聚合视图）。
- let records=[],offset=0;while(true){const {data,error}=await client.from('food_draws').select('id,nickname,food,created_at').order('id',{ascending:false}).range(offset,offset+999);if(error)throw error;records.push(...data);if(data.length<1000)break;offset+=1000;if(offset>=10000){status('超过一万条记录：当前统计仅覆盖最新一万条');break}}
- let rank=new Map();for(const k of Object.keys(counts))counts[k]=0;
- records.forEach(x=>{counts[x.food]=(counts[x.food]||0)+1;rank.set(x.nickname,(rank.get(x.nickname)||0)+1)});
- byId('total').textContent=records.length>=10000?'10000+':records.length;byId('people').textContent=rank.size;byId('mine').textContent=rank.get(byId('nickname').value.trim())||0;
- const biggest=Math.max(1,...Object.values(counts));byId('chart').replaceChildren();foods.forEach(([name,emoji])=>{let item=document.createElement('div');item.className='chart-item';let label=document.createElement('span');label.textContent=emoji+' '+name;let bar=document.createElement('div');bar.className='bar';let inner=document.createElement('i');inner.style.width=(counts[name]/biggest*100)+'%';bar.appendChild(inner);let n=document.createElement('b');n.textContent=counts[name];item.append(label,bar,n);byId('chart').appendChild(item)});
- byId('rank').replaceChildren();let sorted=[...rank.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0]));sorted.slice(0,30).forEach(([name,num],i)=>row(byId('rank'),[(i+1)+'',name,num]));if(!sorted.length)msgRow(byId('rank'),'还没有人参与，快来抽第一签！');
- byId('history').replaceChildren();records.slice(0,50).forEach(x=>row(byId('history'),[x.nickname,x.food,timeFormat(x.created_at)]));if(!records.length)msgRow(byId('history'),'暂无记录');status('已同步 · '+new Date().toLocaleTimeString('zh-CN'));
- }catch(err){status('同步失败：'+(err.message||String(err)),true)} }
-byId('nickname').addEventListener('input',e=>{localStorage.setItem('picker_nickname',e.target.value);});byId('nickname').addEventListener('change',()=>refresh());
-byId('drawBtn').addEventListener('click',async()=>{if(busy)return;let name=byId('nickname').value.trim();if(!name){status('请先输入昵称',true);byId('nickname').focus();return}if(Date.now()-lastDraw<3100){status('请隔 3 秒再抽',true);return}busy=true;byId('drawBtn').disabled=true;byId('result').textContent='命运正在决定中…';status('正在抽取并写入全员记录');let ticker=setInterval(()=>highlight(Math.floor(Math.random()*6)),100);
- try{const {data,error}=await client.rpc('make_food_draw',{p_nickname:name,p_client_id:deviceId});if(error)throw error;const saved=Array.isArray(data)?data[0]:data;if(!saved||!saved.food)throw new Error('数据库未返回结果');lastDraw=Date.now();clearInterval(ticker);ticker=null;highlight(foods.findIndex(x=>x[0]===saved.food));byId('result').textContent='🎉 '+name+'，今天就吃 '+saved.food+'！';await refresh();}catch(err){byId('result').textContent='未完成抽取';status(err.message||String(err),true)}finally{if(ticker)clearInterval(ticker);busy=false;byId('drawBtn').disabled=false}});
-byId('refreshBtn').addEventListener('click',refresh);refresh();setInterval(()=>{if(!busy&&!document.hidden)refresh()},20000);
+  const next=[];let offset=0;
+  while(true){
+   const data=await requestData('/.netlify/functions/draws?offset='+offset+'&limit=1000',{cache:'no-store'});
+   if(!Array.isArray(data.records))throw new Error('记录格式不正确');
+   next.push(...data.records);
+   if(data.records.length<1000)break;
+   offset+=1000;
+   if(offset>=10000){setStatus('超过一万条：当前仅统计最近 10000 条记录');break}
+  }
+  records=next;render();
+  if(records.length<10000)setStatus('已同步 · '+new Date().toLocaleTimeString('zh-CN',{timeZone:'Asia/Shanghai'}));
+ }catch(err){setStatus('同步失败：'+(err.message||String(err)),true)}
+}
+byId('reset').addEventListener('click',refresh);
+byId('drawBtn').addEventListener('click',async()=>{
+ if(busy)return;
+ const nickname=byId('nickname').value.trim();
+ if(!nickname){setStatus('请先输入昵称',true);byId('nickname').focus();return}
+ if(Date.now()-lastDraw<3100){setStatus('请隔 3 秒再抽取',true);return}
+ busy=true;const btn=byId('drawBtn');btn.disabled=true;
+ byId('result').textContent='命运正在决定中…';setStatus('正在保存共享记录');
+ let ticker=setInterval(()=>highlight(Math.floor(Math.random()*foods.length)),100);
+ try{
+  const data=await requestData('/.netlify/functions/draws',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({nickname,clientId:deviceId})});
+  const saved=Array.isArray(data.record)?data.record[0]:data.record;
+  if(!saved||!saved.food)throw new Error('服务器未返回抽取结果');
+  lastDraw=Date.now();
+  clearInterval(ticker);ticker=null;
+  highlight(foods.findIndex(x=>x[0]===saved.food));
+  byId('result').textContent='🎉 '+nickname+'，今天就吃 '+saved.food+'！';
+  await refresh();
+ }catch(err){byId('result').textContent='未完成抽取';setStatus(err.message||String(err),true)}
+ finally{if(ticker)clearInterval(ticker);busy=false;btn.disabled=false}
+});
+render();refresh();setInterval(()=>{if(!busy&&!document.hidden)refresh()},20000);
 })();
 </script></body></html>
